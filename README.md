@@ -1,30 +1,37 @@
-# Document scanner app
+# Architecture Overview
+- Frontend: React/Next.js
+- Backend: Firebase Functions (if any) / Firebase Hosting
+- Storage: Firebase Storage for uploaded images
+- Flow: User uploads → Image processed → Auto-crop applied → Display result
 
-*Automatically synced with your [v0.app](https://v0.app) deployments*
+# Auto-Crop Algorithm
+1. Load uploaded image
+2. Detect main content using edge detection / bounding box
+3. Calculate crop area (top, bottom, left, right)
+4. Crop image and resize if needed
+5. Save/display processed image
 
-[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com/lamakshitiz498-5389s-projects/v0-document-scanner-app)
-[![Built with v0](https://img.shields.io/badge/Built%20with-v0.app-black?style=for-the-badge)](https://v0.app/chat/iJFJG5ovK34)
+# Setup Instructions
+1. Clone repo:
+   git clone https://github.com/your-username/auto-crop-app.git
+2. Install dependencies:
+   npm install
+3. Create `.env.local` (if needed) and add Firebase config
+4. Start dev server:
+   npm run dev
+5. Build & deploy:
+   npm run build
+   firebase deploy
+# Libraries
+- React (MIT)
+- Next.js (MIT)
+- Firebase (Apache 2.0)
+- OpenCV.js (Apache 2.0)
+# Trade-offs
+- Current auto-crop may fail on complex backgrounds
+- Uses client-side processing → performance may vary
 
-## Overview
-
-This repository will stay in sync with your deployed chats on [v0.app](https://v0.app).
-Any changes you make to your deployed app will be automatically pushed to this repository from [v0.app](https://v0.app).
-
-## Deployment
-
-Your project is live at:
-
-**[https://vercel.com/lamakshitiz498-5389s-projects/v0-document-scanner-app](https://vercel.com/lamakshitiz498-5389s-projects/v0-document-scanner-app)**
-
-## Build your app
-
-Continue building your app on:
-
-**[https://v0.app/chat/iJFJG5ovK34](https://v0.app/chat/iJFJG5ovK34)**
-
-## How It Works
-
-1. Create and modify your project using [v0.app](https://v0.app)
-2. Deploy your chats from the v0 interface
-3. Changes are automatically pushed to this repository
-4. Vercel deploys the latest version from this repository
+# Improvements
+- Use ML-based object detection for precise cropping
+- Move processing to serverless backend for faster performance
+- Add multiple file format support
